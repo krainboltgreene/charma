@@ -10,9 +10,9 @@
     ago
     <span>
       <% if ((current_user.voted_for? post) && (post.user != current_user)) %>
-      <%= render 'dislike' %>
+      <%= render 'posts/dislike' %>
       <% elsif post.user != current_user %>
-      <%= render 'like' %>
+      <%= render 'posts/like' %>
       <% else %>
       <%= link_to post_path(post), {type: 'submit', class: "btn btn-default", method: :delete} do %>
       <span class="glyphicon glyphicon-trash"></span>
