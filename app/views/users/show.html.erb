@@ -1,0 +1,15 @@
+<% if current_user == @user %>
+  <%= render 'partials/stats' %>
+<% elsif current_user %>
+    <%= render 'partials/stats' %>
+  <% else %>
+  <section class="stats">
+    <%= render 'partials/stats' %>
+  </section>
+  <% end %>
+  <div class="col-md-9">
+    <div id="feed">
+      <%= render @posts %>
+    </div>
+      <%= will_paginate @posts %>
+  </div>

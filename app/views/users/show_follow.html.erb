@@ -1,0 +1,34 @@
+<div class="row">
+  <% provide(:title, @title) %>
+  <%= render 'partials/stats' %>
+  <div class="col-md-9">
+    <% if @users.any? %>
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <%= @title %>
+      </div>
+      <table class="table">
+        <% @users.each do |user| %>
+        <tr>
+          <td>
+            <%= user.name %>
+          </td>
+          <td>
+            <%= link_to user.handle, user %>
+          </td>
+          <td>
+            <% if user == current_user %>
+
+          <% else %>
+            <% @user = user %>
+            <%= render 'follow_form' %>
+            <% end %>
+          </td>
+        </tr>
+        <% end %>
+      </table>
+    </div>
+    <%= will_paginate %>
+    <% end %>
+  </div>
+</div>

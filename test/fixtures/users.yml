@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+schooley:
+  name: Schooley
+  email: schooley@cat.com
+  password_digest: meow
+  handle: meow
+
+hannah:
+  name: Hannah
+  email: hannah@human.com
+  password_digest: hi
+  handle: hi

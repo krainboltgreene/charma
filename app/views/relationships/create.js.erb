@@ -1,0 +1,5 @@
+$('.follow').bind('ajax:success', function() {
+   $(this).parent('div').html("<%= escape_javascript(render('users/unfollow')) %>");
+});
+
+$("#followers").html('<%= @user.followers.count %>');

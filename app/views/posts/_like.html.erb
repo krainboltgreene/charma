@@ -1,0 +1,4 @@
+<%= link_to like_post_path(@post), {type: 'submit', class: "btn btn-default like-post", method: :put, :remote => true} do %>
+<span class="glyphicon glyphicon-star-empty"></span>
+<% end %>
+ <span class="badge"><%= @post.votes_for.length %></span>

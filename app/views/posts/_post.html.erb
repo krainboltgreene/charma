@@ -1,0 +1,24 @@
+<div class="panel panel-default">
+  <% @post = post %>
+  <div class="panel-body">
+    <%= post.post_text %>
+    <br/>
+  </div>
+  <div class="panel-footer" style="text-align: right">
+    <%= link_to post.user.handle, post.user %>
+    <%= time_ago_in_words(post.created_at) %>
+    ago
+    <span>
+      <% if ((current_user.voted_for? post) && (post.user != current_user)) %>
+      <%= render 'dislike' %>
+      <% elsif post.user != current_user %>
+      <%= render 'like' %>
+      <% else %>
+      <%= link_to post_path(post), {type: 'submit', class: "btn btn-default", method: :delete} do %>
+      <span class="glyphicon glyphicon-trash"></span>
+      <% end %>
+      <span class="badge"><%= post.votes_for.length %></span>
+      <% end %>
+    </span>
+  </div>
+</div>

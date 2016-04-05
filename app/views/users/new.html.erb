@@ -1,0 +1,15 @@
+<div class="col-md-12" style="text-align: center;">
+
+  <h1 class="header">SIGN-UP</h1>
+
+  <%= form_for(@user, :html => {style: "width:50%; margin: 0 auto;"}) do |f| %>
+    <%= f.text_field :name, class: "form-control", :placeholder => "NAME" %><br>
+    <%= f.email_field :email, class: "form-control", :placeholder => "EMAIL" %><br>
+    <%= f.text_field :handle.downcase, class: "form-control", :placeholder => "USERNAME" %><br>
+    <%= f.password_field :password, class: "form-control", :placeholder => "PASSWORD" %><br>
+    <%= f.password_field :password_confirmation, class: "form-control", :placeholder => "VERIFY PASSWORD" %><br><br>
+    <%= f.submit "SUBMIT", class: "btn btn-default" %>
+  <% end %>
+  <br>
+  <%= link_to "BACK", root_path %>
+</div>

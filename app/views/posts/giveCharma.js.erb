@@ -1,0 +1,10 @@
+$('.like-post').bind('ajax:success', function() {
+   $(this).parent('span').html("<%= escape_javascript(render('posts/dislike')) %>");
+   $(".charma").html('<span class="charma_value"><%= current_user.charma %></span> charma');
+   $(".character_count").html('<%= current_user.charma %>');
+   var textInput = $('.new-post')[0];
+   var charLimit = parseInt($('.charma_value')[0].innerText);
+   textInput.addEventListener("keyup", function () {
+     document.getElementsByClassName("character_count")[0].innerText = charLimit - textInput.value.length
+   });
+});
