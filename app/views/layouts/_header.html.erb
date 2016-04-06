@@ -1,7 +1,7 @@
 <nav class="navbar navbar-default navbar-fixed-top vertical-center">
   <div class="container" style="width: 100%;">
     <span class="logo" style="text-align: left;">
-      <a class="navbar-brand" style="color: white;">CHARMA</a>
+      <%= link_to image_tag("charma2.png"), root_path, class: "navbar-brand" %>
     </span>
     <% if logged_in? %>
     <div class="navbar-header">
@@ -12,7 +12,7 @@
         <span class="icon-bar"></span>
       </button>
     </div>
-    <div class="collapse navbar-collapse" id="navbar-collapse-1">
+    <div class="collapse navbar-collapse text-right" id="navbar-collapse-1">
       <ul class="nav navbar-nav navbar-right">
         <li>
           <%= link_to user_path(current_user) do %>
@@ -24,12 +24,6 @@
           <%= link_to logout_path, method: "delete" do %>
           <span class="glyphicon glyphicon-remove"></span>
           LOG OUT
-          <% end %>
-        </li>
-        <li>
-          <%= link_to root_path do %>
-          <span class="glyphicon glyphicon-home"></span>
-          HOME
           <% end %>
         </li>
         <li>
@@ -46,7 +40,7 @@
     </div>
   <% else %>
     <div class="navbar-header navbar-right">
-      <div class="dropdown text-right">
+      <div class="dropdown text-right" style="padding-top: 7px;">
         <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
           Login/Sign-up
           <span class="caret"></span>
