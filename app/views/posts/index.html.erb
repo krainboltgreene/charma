@@ -1,6 +1,6 @@
 <% if current_user %>
 <%= render 'partials/stats' %>
-<div class="col-md-6">
+<div class="col-md-6 col-xs-12">
   <%= form_for :post, url: posts_path do |f| %>
   <div class="input-group col-md-12">
     <%= f.text_field :post_text, class: "form-control new-post", :autocomplete => :off %>
