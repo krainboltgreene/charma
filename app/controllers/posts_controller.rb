@@ -5,7 +5,6 @@ class PostsController < ApplicationController
 
   def create
     @post = Post.new(post_params)
-
     if @post.post_text.length <= current_user.charma
       @post.update(user_id: current_user.id)
     end
@@ -21,15 +20,6 @@ class PostsController < ApplicationController
       format.js
     end
     end
-  end
-
-  def show
-  end
-
-  def new
-  end
-
-  def update
   end
 
   def destroy

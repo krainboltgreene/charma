@@ -1,4 +1,6 @@
 class User < ActiveRecord::Base
+  has_attached_file :avatar, styles: { medium: "300x300>", thumb: "100x100>" }, default_url: "default.png"
+  validates_attachment_content_type :avatar, content_type: /\Aimage\/.*\Z/
   has_secure_password
   acts_as_voter
   has_many :posts, dependent: :destroy
@@ -14,9 +16,9 @@ class User < ActiveRecord::Base
 
   validates_uniqueness_of :handle, :email, case_sensitive: false, :message =>
   "THAT USERNAME AND/OR EMAIL HAS ALREADY BEEN TAKEN"
-  validates :handle, :name, :email, presence: true
+  validates :handle, :name, :email, presence: {message: "FIELD CANNOT BE EMPTY"}
   validates :handle, :name, length: {in: 1...22, :message =>
-  "OOPS, LOOKS LIKE YOU ENTERED TOO LONG OF A USERNAME OR NAME"}
+  "MAX OF 22 CHARACTERS"}
   validates :handle, format: { with: /\A[a-zA-Z0-9]+\Z/,
     :message => "ONLY LETTERS/NUMBERS ALLOWED IN USERNAME"  }
 

@@ -35,6 +35,7 @@ gem 'bootstrap-will_paginate'
 gem 'acts_as_votable', '~> 0.10.0'
 gem 'jquery-turbolinks'
 gem 'rails_12factor', group: :production
+gem "paperclip", "~> 5.0.0.beta1"
 
 # Use Unicorn as the app server
 # gem 'unicorn'

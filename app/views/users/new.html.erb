@@ -3,9 +3,14 @@
   <h1 class="header">SIGN-UP</h1>
 
   <%= form_for(@user, :html => {style: "width:50%; margin: 0 auto;"}) do |f| %>
+    <%= @user.errors[:name].first %>
     <%= f.text_field :name, class: "form-control", :placeholder => "NAME" %><br>
+    <%= @user.errors[:email].first %>
     <%= f.email_field :email, class: "form-control", :placeholder => "EMAIL" %><br>
+    <%= @user.errors[:handle].first %>
     <%= f.text_field :handle.downcase, class: "form-control", :placeholder => "USERNAME" %><br>
+    <%= f.file_field :avatar %><br />
+    <%= @user.errors[:password].first %>
     <%= f.password_field :password, class: "form-control", :placeholder => "PASSWORD" %><br>
     <%= f.password_field :password_confirmation, class: "form-control", :placeholder => "VERIFY PASSWORD" %><br><br>
     <%= f.submit "SUBMIT", class: "btn btn-default" %>

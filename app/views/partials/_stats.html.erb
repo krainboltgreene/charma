@@ -1,7 +1,9 @@
-<div class="col-md-3 well" style="margin-bottom: 15px;">
-
+<div class="col-md-3 col-xs-12 well panel panel-default" style="margin-bottom: 15px;">
 <% @user ||= current_user %>
+  <div class="panel-heading" style="border:none;">
   <h3 style="margin-top: 0;"><%= link_to @user.handle, @user %></h3>
+  </div>
+  <div class="col-xs-6">
   <b>Posts:</b> <%= @user.posts.count %> <br />
   <a href="<%= following_user_path(@user) %>">
     <strong id="following" class="stat">
@@ -25,4 +27,8 @@
   <% else %>
   <%= render 'follow_form' %>
   <% end %>
+</div>
+<div class="col-xs-6">
+  <%= image_tag @user.avatar.url(:thumb)%>
+</div>
 </div>
