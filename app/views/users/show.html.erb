@@ -7,9 +7,12 @@
     <%= render 'partials/stats' %>
   </section>
   <% end %>
-  <div class="col-md-9">
+<div class="col-md-6 col-xs-12">
     <div id="feed">
       <%= render @posts %>
     </div>
       <%= will_paginate @posts %>
-  </div>
+</div>
+<span class="recent">
+  <%= render 'posts/recent' %>
+</span>

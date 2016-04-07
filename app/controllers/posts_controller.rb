@@ -14,7 +14,6 @@ class PostsController < ApplicationController
   def index
     if logged_in?
     @posts = current_user.feed.paginate(page: params[:page], per_page: 10)
-    @leaderboard = Post.order("created_at DESC").limit(5)
     respond_to do |format|
       format.html
       format.js
