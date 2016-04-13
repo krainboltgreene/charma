@@ -3,4 +3,8 @@ class Post < ActiveRecord::Base
   belongs_to :user
   validates :post_text, presence: true
 
+  def self.search(search)
+    where("UPPER(post_text) LIKE UPPER(?)", "%#{search}%")
+  end
+
 end

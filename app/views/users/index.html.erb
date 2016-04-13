@@ -1,28 +1,47 @@
 <div class="col-md-12" style="text-align: center;">
-<div class="panel panel-default">
-  <div class="panel-heading">
-    ALL USERS
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      USERS
+    </div>
+    <table class="table">
+      <% @users.each do |user| %>
+      <tr>
+        <td>
+          <%= image_tag user.avatar.url(:thumb), style: "float: left; width: 35px;" %>
+        </td>
+        <td>
+          <%= user.name %>
+        </td>
+        <td>
+          <%= link_to user.handle, user %>
+        </td>
+        <td>
+          <% if user == current_user %>
+            <% else %>
+          <% @user = user %>
+          <%= render 'follow_form' %>
+          <% end %>
+        </td>
+      </tr>
+      <% end %>
+    </table>
   </div>
-  <table class="table">
-    <% @users.each do |user| %>
-    <tr>
-      <td>
-        <%= user.name %>
-      </td>
-      <td>
-        <%= link_to user.handle, user %>
-      </td>
-      <td>
-        <% if user == current_user %>
-
-        <% else %>
-        <% @user = user %>
-        <%= render 'follow_form' %>
-        <% end %>
-      </td>
-    </tr>
-    <% end %>
-  </table>
-</div>
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      POSTS
+    </div>
+    <table class="table">
+      <% @posts.each do |post| %>
+      <tr>
+        <td>
+          <%= link_to image_tag(post.user.avatar.url(:thumb), style: "float: left; width: 35px;"), post.user %>
+        </td>
+        <td>
+          <%= post.post_text %>
+        </td>
+      </tr>
+      <% end %>
+    </table>
+  </div>
 
 </div>
