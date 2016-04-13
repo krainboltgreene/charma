@@ -1,47 +1,50 @@
 <div class="col-md-12" style="text-align: center;">
-  <div class="panel panel-default">
-    <div class="panel-heading">
-      USERS
+  <ul class="nav nav-tabs">
+    <li class="active">
+      <a data-toggle="tab" href="#users">USERS</a>
+    </li>
+    <li>
+      <a data-toggle="tab" href="#posts">POSTS</a>
+    </li>
+  </ul>
+  <div class="tab-content">
+    <div class="panel panel-default tab-pane fade in active" id="users">
+      <table class="table">
+        <% @users.each do |user| %>
+        <tr>
+          <td>
+            <%= image_tag user.avatar.url(:thumb), style: "float: left; width: 35px;" %>
+          </td>
+          <td>
+            <%= user.name %>
+          </td>
+          <td>
+            <%= link_to user.handle, user %>
+          </td>
+          <td>
+            <% if user == current_user %>
+          <% else %>
+            <% @user = user %>
+            <%= render 'follow_form' %>
+            <% end %>
+          </td>
+        </tr>
+        <% end %>
+      </table>
     </div>
-    <table class="table">
-      <% @users.each do |user| %>
-      <tr>
-        <td>
-          <%= image_tag user.avatar.url(:thumb), style: "float: left; width: 35px;" %>
-        </td>
-        <td>
-          <%= user.name %>
-        </td>
-        <td>
-          <%= link_to user.handle, user %>
-        </td>
-        <td>
-          <% if user == current_user %>
-            <% else %>
-          <% @user = user %>
-          <%= render 'follow_form' %>
-          <% end %>
-        </td>
-      </tr>
-      <% end %>
-    </table>
-  </div>
-  <div class="panel panel-default">
-    <div class="panel-heading">
-      POSTS
+    <div class="panel panel-default tab-pane fade" id="posts">
+      <table class="table">
+        <% @posts.each do |post| %>
+        <tr>
+          <td>
+            <%= link_to image_tag(post.user.avatar.url(:thumb), style: "float: left; width: 35px;"), post.user %>
+          </td>
+          <td>
+            <%= post.post_text %>
+          </td>
+        </tr>
+        <% end %>
+      </table>
     </div>
-    <table class="table">
-      <% @posts.each do |post| %>
-      <tr>
-        <td>
-          <%= link_to image_tag(post.user.avatar.url(:thumb), style: "float: left; width: 35px;"), post.user %>
-        </td>
-        <td>
-          <%= post.post_text %>
-        </td>
-      </tr>
-      <% end %>
-    </table>
   </div>
-
 </div>

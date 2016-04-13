@@ -29,7 +29,7 @@
         <li>
           <%= form_tag(users_path, :method => "get", id: "search-form", class: "navbar-form") do %>
           <div class="form-group" style="display:inline; padding-right: 15px;">
-            <%= text_field_tag :search, params[:search], placeholder: "SEARCH USERS", class: "form-control", style: "display: inline; width: 79%;", :autocomplete => :off %>
+            <%= text_field_tag :search, params[:search], placeholder: "SEARCH CHARMA", class: "form-control", style: "display: inline; width: 79%;", :autocomplete => :off %>
           <%= button_tag(type: 'submit', class: "btn btn-primary") do %>
           <span class="glyphicon glyphicon-search"></span>
           <% end %>

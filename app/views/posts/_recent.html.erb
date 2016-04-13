@@ -1,10 +1,10 @@
 <div class="col-md-3 col-xs-12 well">
   <h3 class="lead" style="margin-top: 0; text-align: center">Recent Posts</h3>
   <table class="table">
-  <% leaderboard.each do |leader| %>
+  <% recent.each do |post| %>
   <tr>
     <td>
-      <%= link_to leader.post_text, leader.user %><br />
+      <%= link_to post.post_text, post.user %><br />
     </td>
   </tr>
   <% end %>
