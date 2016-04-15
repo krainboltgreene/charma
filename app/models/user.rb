@@ -1,6 +1,7 @@
 class User < ActiveRecord::Base
   has_attached_file :avatar, styles: { medium: "300x300>", thumb: "100x100>" }, default_url: "default.png"
   validates_attachment_content_type :avatar, content_type: /\Aimage\/.*\Z/
+  validate :file_dimensions
   has_secure_password
   acts_as_voter
   has_many :posts, dependent: :destroy
@@ -14,6 +15,7 @@ class User < ActiveRecord::Base
   has_many :following, through: :active_relationships, source: :followed
   has_many :followers, through: :passive_relationships, source: :follower
 
+  validates :email, format: { with: /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\z/i, on: [:create, :update] }
   validates_uniqueness_of :handle, :email, case_sensitive: false, :message =>
   "THAT USERNAME AND/OR EMAIL HAS ALREADY BEEN TAKEN"
   validates :handle, :name, :email, presence: {message: "FIELD CANNOT BE EMPTY"}
@@ -45,6 +47,17 @@ class User < ActiveRecord::Base
     def self.search(search)
       where("UPPER(name) LIKE UPPER(?)", "%#{search}%")
       where("UPPER(handle) LIKE UPPER(?)", "%#{search}%")
+    end
+
+  private
+
+    def file_dimensions
+      if avatar.queued_for_write[:original] != nil
+        dimensions = Paperclip::Geometry.from_file(avatar.queued_for_write[:original].path)
+        unless dimensions.width == dimensions.height
+          errors.add :avatar, "Profile image must be in square format"
+        end
+      end
     end
 
 end

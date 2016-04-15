@@ -9,7 +9,7 @@
     <%= f.email_field :email, class: "form-control", :placeholder => "EMAIL" %><br>
     <%= @user.errors[:handle].first %>
     <%= f.text_field :handle.downcase, class: "form-control", :placeholder => "USERNAME" %><br>
-    <%= f.file_field :avatar %><br />
+    <%= f.file_field :avatar %> <%= @user.errors[:avatar].first %><br />
     <%= @user.errors[:password].first %>
     <%= f.password_field :password, class: "form-control", :placeholder => "PASSWORD" %><br>
     <%= f.password_field :password_confirmation, class: "form-control", :placeholder => "VERIFY PASSWORD" %><br><br>
