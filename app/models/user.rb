@@ -49,6 +49,10 @@ class User < ActiveRecord::Base
       where("UPPER(handle) LIKE UPPER(?)", "%#{search}%")
     end
 
+    def send_password_reset
+      UserMailer.password_reset(self).deliver
+    end
+
   private
 
     def file_dimensions

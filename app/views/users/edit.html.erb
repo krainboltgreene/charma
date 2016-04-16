@@ -9,7 +9,9 @@
     <%= f.email_field :email, class: "form-control", :placeholder => "EMAIL" %><br>
     <%= @user.errors[:handle].first %>
     <%= f.text_field :handle.downcase, class: "form-control", :placeholder => "USERNAME" %><br>
-    <%= f.file_field :avatar %> <%= @user.errors[:avatar].first %><br />
+    <div class="form-group form-inline">
+    <%= f.file_field :avatar, class: "form-control", style:"width: 80%; float: left;" %><%= image_tag @user.avatar.url(:thumb), style: "width: 35px;" %><%= @user.errors[:avatar].first %>
+    </div>
     <%= @user.errors[:password].first %>
     <%= f.password_field :password, class: "form-control", :placeholder => "PASSWORD" %><br>
     <%= f.password_field :password_confirmation, class: "form-control", :placeholder => "VERIFY PASSWORD" %><br><br>

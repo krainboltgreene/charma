@@ -24,6 +24,7 @@ class UsersController < ApplicationController
     @user = User.create(user_params)
     session[:user_id] = @user.id
     if @user.save
+      UserMailer.welcome_email(@user).deliver_now
       redirect_to root_path
     else
       render :new
