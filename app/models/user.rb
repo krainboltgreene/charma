@@ -24,6 +24,11 @@ class User < ActiveRecord::Base
   validates :handle, format: { with: /\A[a-zA-Z0-9]+\Z/,
     :message => "ONLY LETTERS/NUMBERS ALLOWED IN USERNAME"  }
 
+  # before a user is created, set the handle/email to downcase for login purposes
+
+  before_create do self.handle.downcase! end
+  before_create do self.email.downcase! end
+
     def feed
       following_ids = "SELECT followed_id FROM relationships
                       WHERE follower_id = :user_id"
