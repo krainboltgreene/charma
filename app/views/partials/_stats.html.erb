@@ -1,34 +1,39 @@
 <div class="col-md-3 col-xs-12 well panel panel-default" style="margin-bottom: 15px;">
-<% @user ||= current_user %>
-  <div class="panel-heading" style="border:none;">
-  <h3 style="margin-top: 0;"><%= link_to @user.handle, @user %></h3>
-  </div>
-  <div class="col-xs-6">
-  <b>Posts:</b> <%= @user.posts.count %> <br />
-  <a href="<%= following_user_path(@user) %>">
-    <strong id="following" class="stat">
-      <%= @user.following.count %>
-    </strong>
-    following <br />
-  </a>
-  <a href="<%= followers_user_path(@user) %>">
-    <strong id="followers" class="stat">
-      <%= @user.followers.count %>
-    </strong>
-    followers <br />
-  </a>
-  <% if @user == current_user %>
-  <span class="charma">
-  <span class="charma_value"><%= current_user.charma %></span> charma
-  </span><br />
-  <%= link_to edit_user_path(@user), {type: 'submit', class: "btn btn-default", method: :get} do %>
-  <span class="glyphicon glyphicon-cog"></span>
-  <% end %>
-  <% else %>
-  <%= render 'follow_form' %>
-  <% end %>
-</div>
-<div class="col-xs-6">
-  <%= image_tag @user.avatar.url(:thumb)%>
-</div>
+    <% @user ||= current_user %>
+    <div class="panel-heading" style="border:none;">
+        <h3 style="margin-top: 0;"><%= link_to @user.handle, @user %></h3>
+    </div>
+    <div class="col-xs-6">
+        <b>Posts:</b>
+        <%= @user.posts.count %>
+        <br/>
+        <a href="<%= following_user_path(@user) %>">
+            <strong id="following" class="stat">
+                <%= @user.following.count %>
+            </strong>
+            following
+            <br/>
+        </a>
+        <a href="<%= followers_user_path(@user) %>">
+            <strong id="followers" class="stat">
+                <%= @user.followers.count %>
+            </strong>
+            followers
+            <br/>
+        </a>
+        <% if @user == current_user %>
+        <span class="charma">
+            <span class="charma_value"><%= current_user.charma %></span>
+            charma
+        </span><br/>
+        <%= link_to edit_user_path(@user), {type: 'submit', class: "btn btn-default", method: :get} do %>
+        <span class="glyphicon glyphicon-cog"></span>
+        <% end %>
+    <% else %>
+        <%= render 'follow_form' %>
+        <% end %>
+    </div>
+    <div class="col-xs-6">
+        <%= image_tag @user.avatar.url(:thumb)%>
+    </div>
 </div>

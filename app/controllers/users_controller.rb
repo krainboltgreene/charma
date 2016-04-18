@@ -71,7 +71,7 @@ class UsersController < ApplicationController
     params.require(:user).permit(:handle.downcase, :name, :email, :password, :password_confirmation, :avatar)
   end
 
-  #private method to determine the correct_user is trying to access a particular
+#private method to determine the correct_user is trying to access a particular
 #users edit page
 
   def correct_user
