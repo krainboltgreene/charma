@@ -29,9 +29,9 @@ class User < ActiveRecord::Base
   before_create do self.email.downcase! end
 
     def feed
-      following_ids = "SELECT followed_id FROM relationships
-                      WHERE follower_id = :user_id"
-      Post.where("user_id IN (#{following_ids}) OR user_id = :user_id", user_id: id).order('created_at DESC')
+      Post.where(
+        Post.unscoped.where(user: following.select(:user_id), user: self).where_values.inject(:or)
+      ).order(created_at: :desc)
     end
 
     def follow(other_user)
@@ -49,8 +49,12 @@ class User < ActiveRecord::Base
     end
 
     def self.search(search)
-      where("UPPER(name) LIKE UPPER(?)", "%#{search}%")
-      where("UPPER(handle) LIKE UPPER(?)", "%#{search}%")
+      self.class.unscoped.where(
+        where("UPPER(name) LIKE UPPER(?)", "%#{search}%").
+        where("UPPER(handle) LIKE UPPER(?)", "%#{search}%").
+        where_values.
+        inject(:or)
+      )
     end
 
     def send_password_reset
